@@ -5,6 +5,8 @@
 #include <QDateTime>
 #include <QVariant>
 #include <errno.h>
+#include <QTimer>
+#include <QElapsedTimer>
 
 #include <iostream>
 
@@ -21,25 +23,22 @@ int main(int argc, char *argv[])
 	stream.setByteOrder(QDataStream::LittleEndian);
 	QChar letter = 'a';
 	int num=0;
-	QDateTime startTime = QDateTime::currentDateTime();
+	QElapsedTimer timer;
 	qDebug("Time for writing");
-	qDebug() << startTime;
-	while(num != 100000000)
+	timer.start();
+	while(num != 10000000)
 	{
 		stream << letter;
 		num++;
 	}
-	file.close();
-	QDateTime finishTime = QDateTime::currentDateTime();
-	qDebug() << finishTime;
-	double num1,num2,num3;
-	num1=startTime.toTime_t();
-	num2=finishTime.toTime_t();
-	num3=num2-num1;
-	qDebug()<<"Seconds : "<<num3;
-	double res=100000000/num3;
-	double mb=res/104850;
+
+
+	double num1=timer.elapsed();
+	qDebug()<<"MiliSeconds : "<<num1;
+	double res=10000000000/num1;
+	double mb=res/1048576;
 	qDebug()<<"megabayt : "<<mb;
+	file.close();
 
 	QFile file2("hardisk.dat");
 	if (!file2.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -50,22 +49,18 @@ int main(int argc, char *argv[])
 	stream2.setByteOrder(QDataStream::LittleEndian);
 
 	QChar letter2;
-	startTime = QDateTime::currentDateTime();
+
 	qDebug("Time for reading");
-	qDebug() << startTime;
+	timer.start();
 	while(!file2.atEnd())
 	{
 		stream2>>letter2;
 		//qDebug()<<letter2;
 	}
-	finishTime = QDateTime::currentDateTime();
-	qDebug() << finishTime;
-	num1=startTime.toTime_t();
-	num2=finishTime.toTime_t();
-	num3=num2-num1;
-	qDebug()<<"Seconds : "<<num3;
-	res=100000000/num3;
-	mb=res/104850;
+	 num1=timer.elapsed();
+	qDebug()<<"Seconds : "<<num1;
+	res=10000000000/num1;
+	mb=res/1048576;
 	qDebug()<<"megabayt : "<<mb;
 	file2.close();
 	return 0;
