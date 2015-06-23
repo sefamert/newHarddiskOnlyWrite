@@ -1,4 +1,5 @@
 #include <QCoreApplication>
+<<<<<<< HEAD
 #include <QDataStream>
 #include <QDebug>
 #include <QFile>
@@ -78,4 +79,12 @@ int main(int argc, char *argv[])
 	qDebug("------------------------------------------------------------------------");
 //--------------------------------------------------------------------------------------------
 	return 0;
+=======
+
+int main(int argc, char *argv[])
+{
+    QCoreApplication a(argc, argv);
+
+    return a.exec();
+>>>>>>> 5ddd3ebfed52267e0e5ff7f9d0a27c6f3d999d82
 }
