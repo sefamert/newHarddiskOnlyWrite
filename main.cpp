@@ -49,6 +49,7 @@ int main(int argc, char *argv[])
 	qDebug("--------------------------------------------------------------------");
 	qDebug("\nÇağlar abi bayadır uğraşıyorum çok farklı kombinasyonlar denedim ama sabah sana gösterdiğim hepsinden daha hızlı çalışıyor.");
 	qDebug(" Aşağıda olan senin bugün yap dediğin eğer yanlış bir şey yapmamışsam. Bi bakarsan sevinirim.\n");
+
 	QFile file2("hardisk2.dat");
 		num = 0;
 		int bytes = 10000000 , Mb=1048576;
@@ -72,7 +73,7 @@ int main(int argc, char *argv[])
 		qDebug() << "MiliSeconds : " << miliSeconds;
 		res = (bytes * 1000) / miliSeconds;
 		double resMb = res / Mb;
-		qDebug() << "megabayt : " << resMb;
+		qDebug() << "megabayt : " << resMb * 2;
 
 		file2.close();
 	qDebug("------------------------------------------------------------------------");

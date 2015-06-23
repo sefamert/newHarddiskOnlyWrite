@@ -1,1 +1,2 @@
 # hardDiskDeneme2
+# newHarddiskOnlyWrite
